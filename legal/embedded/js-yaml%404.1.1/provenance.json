@@ -1,0 +1,11 @@
+{
+  "name": "js-yaml",
+  "version": "4.1.1",
+  "metadataUrl": "https://registry.npmjs.org/js-yaml/4.1.1",
+  "tarball": "https://registry.npmjs.org/js-yaml/-/js-yaml-4.1.1.tgz",
+  "integrity": "sha512-qQKT4zQxXl8lLwBtHMWwaTcGfFOZviOJet3Oy/xmGk2gZH677CJM9EvtfdSkgWcATZhj/55JZ0rmy3myCT5lsA==",
+  "files": [
+    "package/LICENSE",
+    "package/package.json"
+  ]
+}

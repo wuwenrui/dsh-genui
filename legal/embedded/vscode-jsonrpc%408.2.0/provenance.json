@@ -1,0 +1,11 @@
+{
+  "name": "vscode-jsonrpc",
+  "version": "8.2.0",
+  "metadataUrl": "https://registry.npmjs.org/vscode-jsonrpc/8.2.0",
+  "tarball": "https://registry.npmjs.org/vscode-jsonrpc/-/vscode-jsonrpc-8.2.0.tgz",
+  "integrity": "sha512-C+r0eKJUIfiDIfwJhria30+TYWPtuHJXHtI7J0YlOmKAo7ogxP20T0zxB7HZQIFhIyvoBPwWskjxrvAtfjyZfA==",
+  "files": [
+    "package/package.json",
+    "package/License.txt"
+  ]
+}

@@ -40,7 +40,7 @@ const ASSET_ROUTE_PATH = '/plugins/@changfenhuang/dsh-genui/assets'
 const ASSET_FILE_RE = /^[A-Za-z0-9][A-Za-z0-9._-]*\.js$/
 
 /** The handler itself (registered via the optional webServer probe). */
-async function serveGenuiAsset(req: IncomingMessage, res: ServerResponse): Promise<void> {
+export async function serveGenuiAsset(req: IncomingMessage, res: ServerResponse): Promise<void> {
   if (req.method !== 'GET' && req.method !== 'HEAD') {
     res.writeHead(405)
     res.end()

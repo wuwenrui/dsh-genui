@@ -14,6 +14,8 @@ concurrency:
 
 jobs:
   publish:
+    # LawyerDesk forks distribute reviewed private-channel artifacts, never the author's npm package.
+    if: github.repository == 'omdsh-dev/dsh-genui'
     runs-on: ubuntu-latest
     timeout-minutes: 40
     env:

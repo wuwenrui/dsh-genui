@@ -6,6 +6,7 @@
 import { memo, useEffect, useRef, useState, type ReactNode } from 'react'
 import css from '../GenuiBlock.module.css'
 import type { GenuiAudio, GenuiVideo } from '../spec.ts'
+import { isLawyerMode } from '../product-policy.ts'
 
 /** Deterministic avatar color by name hash. Host static tokens ONLY —
  * design system v2: no off-brand hexes, the palette always matches the
@@ -59,11 +60,11 @@ export function ClickFeedbackButton({ className, disabled, onClick, children }: 
         }}
       >
         {children}
-        {sent && <span className={css.btnSent} aria-hidden>✓ 已触发</span>}
+        {sent && <span className={css.btnSent} aria-hidden>{isLawyerMode() ? '请求待处理' : '✓ 已触发'}</span>}
       </button>
       {/* Live-region sibling: button content is atomic to screen readers, so
        * the "已触发" confirmation announces from a hidden status region. */}
-      <span className={css.visuallyHidden} role="status">{sent ? '已触发' : ''}</span>
+      <span className={css.visuallyHidden} role="status">{sent ? (isLawyerMode() ? '请求已触发，未确认业务成功' : '已触发') : ''}</span>
     </>
   )
 }

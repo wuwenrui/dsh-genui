@@ -1,0 +1,11 @@
+{
+  "name": "langium",
+  "version": "4.2.0",
+  "metadataUrl": "https://registry.npmjs.org/langium/4.2.0",
+  "tarball": "https://registry.npmjs.org/langium/-/langium-4.2.0.tgz",
+  "integrity": "sha512-SoXTYrTyA9x0CjVoguZfB9NIbj2RwQ7KpltHyJwB7jyzbnfHkqw5Alf9A1JtIqouT7fZv4xMCCy+7CoIYGV65w==",
+  "files": [
+    "package/LICENSE",
+    "package/package.json"
+  ]
+}

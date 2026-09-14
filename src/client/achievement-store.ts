@@ -10,6 +10,7 @@
  *  - recordTemplateUse()：模板中心试用
  */
 import type { GenuiSpec } from './spec.ts'
+import { isLawyerMode } from './product-policy.ts'
 import { ACHIEVEMENTS, checkAchievements, countSpecKinds, emptyState, type AchieveState, type AchievementDef } from './achievements.ts'
 
 const STORE_KEY = 'dsh.genui.achievements'
@@ -27,6 +28,7 @@ const listeners = new Set<() => void>()
 let toastQueue: AchievementDef[] = []
 
 function loadStore(): AchieveStore {
+  if (isLawyerMode()) return { state: emptyState(), unlocked: {} }
   try {
     const raw = localStorage.getItem(STORE_KEY)
     if (raw === null) return { state: emptyState(), unlocked: {} }
@@ -72,6 +74,7 @@ function emit(): void {
 
 /** 应用一次状态更新：持久化 + 检查新解锁（进 toast 队列）+ 通知订阅者。 */
 function applyDelta(patch: Partial<AchieveState>): void {
+  if (isLawyerMode()) return
   store.state = { ...store.state, ...patch }
   const fresh = checkAchievements(store.state, store.unlocked)
   for (const ach of fresh) store.unlocked[ach.id] = Date.now()
@@ -97,6 +100,7 @@ function fingerprintOf(spec: GenuiSpec): string {
 
 /** 记录一次「内容不重复」的 fence 渲染。 */
 export function recordFence(spec: GenuiSpec): void {
+  if (isLawyerMode()) return
   const fingerprint = fingerprintOf(spec)
   const seen = readSeen()
   if (seen.includes(fingerprint)) return

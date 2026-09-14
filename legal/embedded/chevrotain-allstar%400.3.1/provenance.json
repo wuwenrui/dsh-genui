@@ -1,0 +1,11 @@
+{
+  "name": "chevrotain-allstar",
+  "version": "0.3.1",
+  "metadataUrl": "https://registry.npmjs.org/chevrotain-allstar/0.3.1",
+  "tarball": "https://registry.npmjs.org/chevrotain-allstar/-/chevrotain-allstar-0.3.1.tgz",
+  "integrity": "sha512-b7g+y9A0v4mxCW1qUhf3BSVPg+/NvGErk/dOkrDaHA0nQIQGAtrOjlX//9OQtRlSCy+x9rfB5N8yC71lH1nvMw==",
+  "files": [
+    "package/LICENSE",
+    "package/package.json"
+  ]
+}

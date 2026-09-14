@@ -1,4 +1,5 @@
 /** Shared primitive sanitizers used by the GenUI guard. */
+import { isLawyerMode, lawyerMediaSource } from '../product-policy.ts'
 
 /** Is `value` one of `values`? */
 function inEnum<T extends string>(value: unknown, values: readonly T[]): value is T {
@@ -36,6 +37,7 @@ export function safeMediaSrc(value: unknown): string | undefined {
   if (typeof value !== 'string') return undefined
   const normalized = value.trim()
   if (normalized === '' || normalized.length > 2048) return undefined
+  if (isLawyerMode()) return lawyerMediaSource(normalized)
   if (/^https?:\/\//i.test(normalized)) return normalized
   if (/^[a-z][a-z0-9+.-]*:/i.test(normalized) || /^[/\\]{2}/.test(normalized)) return undefined
   return normalized

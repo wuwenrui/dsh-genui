@@ -14,6 +14,7 @@ import { recordFence, recordInteraction } from './achievement-store.ts'
 import { renderNode } from './blocks/render-node.tsx'
 import type { AnswersState, GenuiBlockProps, QuestionMeta } from './blocks/state.ts'
 import type { GenuiSpec } from './spec.ts'
+import { constrainLawyerMedia } from '../lawyer/media-policy.ts'
 
 export const GENUI_ACTION_DEBOUNCE_MS = 300
 
@@ -206,6 +207,7 @@ function GenuiBlockInstance({ spec, stateKey, animateEntrance = true }: GenuiBlo
  * key remounts, keeping different blocks' interaction state isolated.
  */
 export const GenuiBlock = memo(function GenuiBlock(props: GenuiBlockProps) {
+  const spec = useMemo(() => constrainLawyerMedia(props.spec), [props.spec])
   const [identity, setIdentity] = useState({ stateKey: props.stateKey, generation: 0 })
   if (identity.stateKey !== props.stateKey) {
     setIdentity({
@@ -213,6 +215,6 @@ export const GenuiBlock = memo(function GenuiBlock(props: GenuiBlockProps) {
       generation: identity.generation + (identity.stateKey === undefined ? 0 : 1),
     })
   }
-  return <GenuiBlockInstance key={identity.generation} {...props} />
+  return <GenuiBlockInstance key={identity.generation} {...props} spec={spec} />
 }, (prev, next) => prev.stateKey === next.stateKey
   && prev.animateEntrance === next.animateEntrance && specEquivalent(prev.spec, next.spec))

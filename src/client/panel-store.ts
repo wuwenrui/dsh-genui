@@ -21,6 +21,7 @@
  *
  */
 import type { GenuiSpec, GenuiTab } from './spec.ts'
+import { isLawyerMode } from './product-policy.ts'
 import { countGenuiNodes } from './guard.ts'
 
 /** Panel scale limits — adjustable defaults (design doc: scale limits are
@@ -115,6 +116,7 @@ interface PanelStorageShape {
 }
 
 function readPanelStorage(): PanelStorageShape {
+  if (isLawyerMode()) return { order: [], sessions: {} }
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
     if (raw === null) return { order: [], sessions: {} }
@@ -132,6 +134,7 @@ function readPanelStorage(): PanelStorageShape {
 }
 
 function writePanelStorage(sessionId: string, entry: PersistedPanel): void {
+  if (isLawyerMode()) return
   try {
     const store = readPanelStorage()
     const order = store.order.filter(k => k !== sessionId)

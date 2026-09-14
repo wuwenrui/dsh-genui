@@ -1,0 +1,11 @@
+{
+  "name": "lodash-es",
+  "version": "4.18.1",
+  "metadataUrl": "https://registry.npmjs.org/lodash-es/4.18.1",
+  "tarball": "https://registry.npmjs.org/lodash-es/-/lodash-es-4.18.1.tgz",
+  "integrity": "sha512-J8xewKD/Gk22OZbhpOVSwcs60zhd95ESDwezOFuA3/099925PdHJ7OFHNTGtajL3AlZkykD32HykiMo+BIBI8A==",
+  "files": [
+    "package/LICENSE",
+    "package/package.json"
+  ]
+}

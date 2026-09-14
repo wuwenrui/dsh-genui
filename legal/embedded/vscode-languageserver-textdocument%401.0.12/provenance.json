@@ -1,0 +1,11 @@
+{
+  "name": "vscode-languageserver-textdocument",
+  "version": "1.0.12",
+  "metadataUrl": "https://registry.npmjs.org/vscode-languageserver-textdocument/1.0.12",
+  "tarball": "https://registry.npmjs.org/vscode-languageserver-textdocument/-/vscode-languageserver-textdocument-1.0.12.tgz",
+  "integrity": "sha512-cxWNPesCnQCcMPeenjKKsOCKQZ/L6Tv19DTRIGuLWe32lyzWhihGVJ/rcckZXJxfdKCFvRLS3fpBIsV/ZGX4zA==",
+  "files": [
+    "package/package.json",
+    "package/License.txt"
+  ]
+}

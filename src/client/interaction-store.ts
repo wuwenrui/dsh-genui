@@ -15,6 +15,8 @@
  * @module @changfenhuang/dsh-genui/client/interaction-store
  */
 
+import { isLawyerMode } from './product-policy.ts'
+
 /** Durable state of one UI block. */
 export interface BlockInteractionState {
   /** group → chosen option label (radio aggregation answers). */
@@ -44,6 +46,7 @@ function emptyStore(): StoreShape {
 }
 
 function readStore(): StoreShape {
+  if (isLawyerMode()) return emptyStore()
   try {
     const raw = localStorage.getItem(STORE_KEY)
     if (raw === null) return emptyStore()
@@ -58,6 +61,7 @@ function readStore(): StoreShape {
 }
 
 function writeStore(store: StoreShape): void {
+  if (isLawyerMode()) return
   try {
     localStorage.setItem(STORE_KEY, JSON.stringify(store))
   } catch {

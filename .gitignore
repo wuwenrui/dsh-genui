@@ -1,6 +1,8 @@
 node_modules/
 *.tsbuildinfo
 lib/
+lib-lawyer/
+dist-lawyer/
 .e2e-artifacts/
 .playwright-cli/
 # macOS Finder metadata (never source)

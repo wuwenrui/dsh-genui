@@ -32,6 +32,7 @@ import { GenuiBlock } from './GenuiBlock.tsx'
 import { ErrorBoundary } from './ErrorBoundary.tsx'
 import { panelStateKey } from './interaction-store.ts'
 import { TemplateDrawer } from './TemplateDrawer.tsx'
+import { isLawyerMode } from './product-policy.ts'
 import { clearSessionPanel, getPanelExpandToken, getPanelSpec, setLocalPanel, subscribePanel, subscribePanelExpand } from './panel-store.ts'
 import css from './GenuiBlock.module.css'
 
@@ -82,6 +83,7 @@ export function GenuiPanel({ sessionId, sendGenuiAction, insertTemplate }: Genui
   // hero — the host composer hero flex-compresses dock items with no content,
   // and the template button is a permanent header entry anyway).
   const [hint, setHint] = useState<boolean>(() => {
+    if (isLawyerMode()) return false
     try {
       return hasSpec && localStorage.getItem(ONBOARD_KEY) !== '1'
     } catch {
@@ -204,7 +206,7 @@ export function GenuiPanel({ sessionId, sendGenuiAction, insertTemplate }: Genui
           onClick={() => setCollapsed(c => !c)}
         >
           <span className={css.panelBadge}>面板</span>
-          <span className={css.panelTitle}>{spec?.title ?? (drawer !== null ? 'GenUI 探索' : 'GenUI 面板')}</span>
+          <span className={css.panelTitle}>{spec?.title ?? (isLawyerMode() ? '分析面板' : drawer !== null ? 'GenUI 探索' : 'GenUI 面板')}</span>
           <span className={css.panelChevron} aria-hidden>
             {/* Host-style glyphs (same icon set as the TodoDock header) instead of typed arrows. */}
             {collapsed ? <IconChevronUpOutline14 /> : <IconChevronDownOutline14 />}
@@ -212,7 +214,7 @@ export function GenuiPanel({ sessionId, sendGenuiAction, insertTemplate }: Genui
         </button>
         {/* Template center (0.9.4): one button — the discovery surface for
             new users and a quick-start entry for everyone. */}
-        <button
+        {!isLawyerMode() && <button
           type="button"
           className={`${css.panelTpl}${drawer === 'templates' ? ` ${css.panelTplActive}` : ''}`}
           aria-label="模板中心"
@@ -220,10 +222,10 @@ export function GenuiPanel({ sessionId, sendGenuiAction, insertTemplate }: Genui
           onClick={() => { setCollapsed(false); setDrawer(d => (d === 'templates' ? null : 'templates')) }}
         >
           模板
-        </button>
+        </button>}
         {/* Achievements (0.9.5): the exploration trophies, rendered by GenUI
             itself (dogfooding). */}
-        <button
+        {!isLawyerMode() && <button
           type="button"
           className={`${css.panelTpl}${drawer === 'achievements' ? ` ${css.panelTplActive}` : ''}`}
           aria-label="探索成就"
@@ -231,7 +233,7 @@ export function GenuiPanel({ sessionId, sendGenuiAction, insertTemplate }: Genui
           onClick={() => { setCollapsed(false); setDrawer(d => (d === 'achievements' ? null : 'achievements')) }}
         >
           成就
-        </button>
+        </button>}
         {/* In-place dismiss (issue #23): the same local override `/panel
             clear` applies — persists to localStorage, notifies subscribers,
             unmounts the dock without any navigation or reload. */}
@@ -257,7 +259,7 @@ export function GenuiPanel({ sessionId, sendGenuiAction, insertTemplate }: Genui
           data-genui-panel-body
           style={bodyHeight === null ? undefined : { height: bodyHeight }}
         >
-          {drawer !== null ? (
+          {!isLawyerMode() && drawer !== null ? (
             <TemplateDrawer
               tab={drawer}
               onUse={(text) => {

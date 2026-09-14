@@ -1,0 +1,11 @@
+{
+  "name": "earcut",
+  "version": "3.0.1",
+  "metadataUrl": "https://registry.npmjs.org/earcut/3.0.1",
+  "tarball": "https://registry.npmjs.org/earcut/-/earcut-3.0.1.tgz",
+  "integrity": "sha512-0l1/0gOjESMeQyYaK5IDiPNvFeu93Z/cO0TjZh9eZ1vyCtZnA7KMZ8rQggpsJHIbGSdrqYq9OhuveadOVHCshw==",
+  "files": [
+    "package/LICENSE",
+    "package/package.json"
+  ]
+}
